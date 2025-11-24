@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteka Wiedzy - EduWay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { 900: '#0f172a', 800: '#1e293b' },
+                        gold: { 500: '#f59e0b', 400: '#fbbf24' },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.1);
+        }
+        .filter-btn.active {
+            background-color: #f59e0b;
+            color: #0f172a;
+            border-color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 bg-dark-900/90 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-white transition"></i>
+                <span class="text-white font-bold">Powrót</span>
+            </a>
+            <div class="text-xl font-bold text-white">Biblioteka <span class="text-gold-500">EduWay</span></div>
+            <div class="w-16"></div> </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[100px] -z-10"></div>
+        <div class="container mx-auto max-w-4xl text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Czego chcesz się dziś nauczyć?</h1>
+            
+            <div class="bg-dark-800/80 p-2 rounded-2xl border border-white/10 flex flex-col md:flex-row gap-2 max-w-2xl mx-auto shadow-2xl">
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                    <input type="text" id="searchInput" placeholder="Szukaj tematu (np. nawroty, DDA)..." 
+                           class="w-full bg-transparent pl-12 pr-4 py-3 text-white outline-none placeholder-slate-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mt-8" id="filters">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 transition" data-filter="all">Wszystkie</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 transition" data-filter="ebook">Ebooki</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 transition" data-filter="audiobook">Audiobooki</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 transition" data-filter="workbook">Workbooki</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 transition" data-filter="poradnik">Poradniki</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 px-6 pb-24">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="materialsGrid">
+
+                <article class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-category="poradnik ebook">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504194101489-62f64dc5473c?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-red-500/90 text-white text-xs font-bold px-2 py-1 rounded">PORADNIK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Nawroty - jak ich uniknąć?</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">Przewodnik po sygnałach ostrzegawczych i wyzwalaczach. Zbuduj plan awaryjny.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-file-pdf"></i> PDF</span>
+                            <a href="Nawroty-jak-ich-uniknac-przewodnik-po-sygnalach-ostrzegawczych-wyzwalaczach-i-strategiach-zapobiegan.pdf" target="_blank" class="text-gold-400 hover:text-white font-bold text-sm transition">Pobierz <i class="fa-solid fa-download ml-1"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-category="ebook">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-purple-500/90 text-white text-xs font-bold px-2 py-1 rounded">EBOOK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Dziecko w cieniu alkoholu</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">O syndromie DDA, rolach w rodzinie i drodze do uzdrowienia traumy.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-file-pdf"></i> PDF</span>
+                            <a href="Dziecko-w-cieniu-alkoholu-2.pdf" target="_blank" class="text-gold-400 hover:text-white font-bold text-sm transition">Pobierz <i class="fa-solid fa-download ml-1"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-category="workbook">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-blue-500/90 text-white text-xs font-bold px-2 py-1 rounded">WORKBOOK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Pierwsze 30 dni trzeźwości</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">Praktyczny zeszyt ćwiczeń na najtrudniejszy okres. Strategia HALT.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-solid fa-pen"></i> Ćwiczenia</span>
+                            <a href="Pierwsze-30-dni-trzezwosci-Przewodnik-po-najtrudniejszym-okresie-po-terapii.pdf" target="_blank" class="text-gold-400 hover:text-white font-bold text-sm transition">Pobierz <i class="fa-solid fa-download ml-1"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-category="poradnik">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-teal-500/90 text-white text-xs font-bold px-2 py-1 rounded">PORADNIK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Jak rozmawiać z bliskim?</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">Skrypty rozmów, komunikaty JA i przełamywanie zaprzeczeń w dialogu.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-file-pdf"></i> PDF</span>
+                            <a href="Jak-rozmawiac-z-bliskim-o-problemie.pdf" target="_blank" class="text-gold-400 hover:text-white font-bold text-sm transition">Pobierz <i class="fa-solid fa-download ml-1"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden group flex flex-col" data-category="ebook">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-indigo-500/90 text-white text-xs font-bold px-2 py-1 rounded">EBOOK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">5 Mitów o uzależnieniu</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">Fakty naukowe, które obalają stereotypy i ratują rodziny.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-file-pdf"></i> PDF</span>
+                            <a href="5-mitow-o-uzaleznieniu-prawda-ktora-ratuje-rodziny.pdf" target="_blank" class="text-gold-400 hover:text-white font-bold text-sm transition">Pobierz <i class="fa-solid fa-download ml-1"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                 <article class="glass-card rounded-2xl overflow-hidden group flex flex-col border-gold-500/30 border" data-category="audiobook">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/60 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center pl-1 shadow-lg shadow-gold-500/40 group-hover:scale-110 transition">
+                                <i class="fa-solid fa-play text-dark-900 text-lg"></i>
+                            </div>
+                        </div>
+                        <span class="absolute top-4 left-4 bg-gold-500 text-dark-900 text-xs font-bold px-2 py-1 rounded">AUDIOBOOK</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Medytacja: Spokój umysłu</h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-1">Prowadzona sesja relaksacyjna dla osób w trakcie terapii. Wycisz lęk.</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                            <span class="text-xs text-slate-500"><i class="fa-solid fa-clock"></i> 25 min</span>
+                            <button class="text-gold-400 hover:text-white font-bold text-sm transition">Słuchaj (Premium)</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            
+            <div id="noResults" class="hidden text-center py-20">
+                <i class="fa-solid fa-ghost text-4xl text-slate-600 mb-4"></i>
+                <p class="text-slate-400">Nie znaleziono materiałów w tej kategorii.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('article');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        // Funkcja filtrowania
+        function filterItems() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.filter-btn.active').dataset.filter;
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const categories = item.dataset.category;
+                const matchesSearch = title.includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+
+                if (matchesSearch && matchesCategory) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterItems();
+            });
+        });
+
+        searchInput.addEventListener('input', filterItems);
+    </script>
+</body>
+</html>
