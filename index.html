@@ -45,15 +45,36 @@
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(251, 191, 36, 0.15);
         }
         .text-gold-gradient {
             background: linear-gradient(135deg, #fcd34d 0%, #d97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* Style dla stanu zablokowanego */
+        .locked-content {
+            filter: grayscale(0.8);
+            opacity: 0.8;
+        }
+        .unlocked-content {
+            filter: grayscale(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-black">
+
+    <div class="fixed top-24 right-4 z-50 bg-dark-800 border border-white/10 p-2 rounded-lg text-xs shadow-xl hidden md:block">
+        <span class="text-slate-400 block mb-1">Widok:</span>
+        <button onclick="toggleUserStatus(false)" id="btnGuest" class="px-3 py-1 bg-gold-500 text-black font-bold rounded mr-1">Gość</button>
+        <button onclick="toggleUserStatus(true)" id="btnMember" class="px-3 py-1 bg-dark-700 text-white rounded hover:bg-white/10">Zalogowany (Premium)</button>
+    </div>
 
     <nav class="fixed w-full z-50 glass-dark border-b border-white/5">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -70,8 +91,12 @@
                 <a href="biblioteka.html" class="hover:text-gold-400 transition-colors flex items-center gap-2">
                     <i class="fa-solid fa-layer-group"></i> Biblioteka
                 </a>
+                <a href="#featured" class="hover:text-gold-400 transition-colors">Wyróżnione</a>
                 <a href="#premium" class="hover:text-gold-400 transition-colors">Plany Premium</a>
                 <a href="#contact" class="hover:text-gold-400 transition-colors">Kontakt</a>
+                <a href="#" id="navAuthBtn" class="px-5 py-2.5 rounded-full bg-white/10 text-white font-bold hover:bg-white/20 transition border border-white/10">
+                    <i class="fa-regular fa-user mr-2"></i> Zaloguj
+                </a>
                 <a href="biblioteka.html" class="px-5 py-2.5 rounded-full bg-gold-500 text-dark-900 font-bold hover:bg-gold-400 transition shadow-lg shadow-gold-500/20">
                     Strefa Wiedzy
                 </a>
@@ -95,15 +120,16 @@
             </h1>
 
             <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Ekskluzywna platforma edukacyjna Ośrodka MyWay. Pobieraj profesjonalne <strong>ebooki</strong>, słuchaj <strong>audiobooków</strong> i pracuj z interaktywnymi <strong>workbookami</strong>.
+                Ekskluzywna platforma edukacyjna Ośrodka MyWay. Odblokuj dostęp do wiedzy, która leczy.
+                <strong>Ebooki, Audiobooki i Warsztaty</strong> w jednym miejscu.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="biblioteka.html" class="px-8 py-4 rounded-xl bg-gold-500 text-dark-900 font-bold hover:bg-gold-400 shadow-xl shadow-gold-500/20 transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-magnifying-glass"></i> Przeszukaj Bibliotekę
+                    <i class="fa-solid fa-magnifying-glass"></i> Przeglądaj Bibliotekę
                 </a>
                 <a href="#premium" class="px-8 py-4 rounded-xl bg-white/5 text-white font-semibold border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-crown text-gold-400"></i> Zobacz Cennik
+                    <i class="fa-solid fa-crown text-gold-400"></i> Odblokuj Premium
                 </a>
             </div>
         </div>
@@ -138,12 +164,94 @@
         </div>
     </section>
 
-    <section id="premium" class="py-24 px-6 relative">
+    <section id="featured" class="py-24 px-6 relative">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Bestsellery EduWay</h2>
+                    <p class="text-slate-400">Najczęściej wybierane materiały wspierające terapię.</p>
+                </div>
+                <a href="biblioteka.html" class="text-gold-400 hover:text-white font-semibold transition mt-4 md:mt-0 flex items-center gap-2 group">
+                    Zobacz całą bibliotekę <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group relative">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-green-500 text-dark-900 text-xs font-bold px-3 py-1 rounded-full">DARMOWE</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">5 Mitów o uzależnieniu</h3>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">Fundamentalna wiedza, która obala stereotypy. Idealny start dla rodzin.</p>
+                        
+                        <a href="5-mitow-o-uzaleznieniu-prawda-ktora-ratuje-rodziny.pdf" target="_blank" class="w-full py-3 rounded-xl bg-white/10 text-white font-semibold text-center hover:bg-white/20 transition border border-white/5 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> Pobierz PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group relative border border-gold-500/20">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504194101489-62f64dc5473c?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 locked-visual">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-gold-500 text-dark-900 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-crown mr-1"></i> PREMIUM</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Nawroty - jak ich uniknąć?</h3>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">Zaawansowany workbook profilaktyczny. Plan awaryjny, sygnały ostrzegawcze i ćwiczenia.</p>
+                        
+                        <div class="premium-lock block">
+                            <a href="#premium" class="w-full py-3 rounded-xl bg-gold-500/10 text-gold-400 font-semibold text-center hover:bg-gold-500/20 transition border border-gold-500/20 flex items-center justify-center gap-2 group-hover:shadow-lg shadow-gold-500/5">
+                                <i class="fa-solid fa-lock"></i> Odblokuj dostęp
+                            </a>
+                        </div>
+                        
+                        <div class="premium-download hidden">
+                            <a href="Nawroty-jak-ich-uniknac-przewodnik-po-sygnalach-ostrzegawczych-wyzwalaczach-i-strategiach-zapobiegan.pdf" target="_blank" class="w-full py-3 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-file-pdf"></i> Pobierz Workbook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group relative border border-gold-500/20">
+                    <div class="h-48 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 locked-visual">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-gold-500 text-dark-900 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-crown mr-1"></i> PREMIUM</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Dziecko w cieniu alkoholu</h3>
+                        <p class="text-slate-400 text-sm mb-6 flex-1">Kompleksowe opracowanie o DDA. Zrozumienie ról, schematów i droga do wyjścia.</p>
+                        
+                        <div class="premium-lock block">
+                            <a href="#premium" class="w-full py-3 rounded-xl bg-gold-500/10 text-gold-400 font-semibold text-center hover:bg-gold-500/20 transition border border-gold-500/20 flex items-center justify-center gap-2 group-hover:shadow-lg shadow-gold-500/5">
+                                <i class="fa-solid fa-lock"></i> Odblokuj dostęp
+                            </a>
+                        </div>
+
+                         <div class="premium-download hidden">
+                            <a href="Dziecko-w-cieniu-alkoholu-2.pdf" target="_blank" class="w-full py-3 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-file-pdf"></i> Pobierz Ebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="premium" class="py-24 px-6 relative bg-dark-800/30">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-16">
-                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm">Inwestycja w siebie</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-4">Wybierz swój plan rozwoju</h2>
-                <p class="text-slate-400">Dołącz do zamkniętej społeczności i zyskaj nielimitowany dostęp.</p>
+                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm">Inwestycja w zdrowie</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-4">Plany EduWay Premium</h2>
+                <p class="text-slate-400">Płatność jest jednorazowa lub subskrypcyjna. Natychmiastowe odblokowanie materiałów.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -154,19 +262,19 @@
                         <li class="flex gap-3"><i class="fa-solid fa-check text-green-500"></i> Dostęp do 5 ebooków/mc</li>
                         <li class="flex gap-3"><i class="fa-solid fa-check text-green-500"></i> Podstawowe workbooki</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition">Wybieram Start</a>
+                    <button class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition">Wybieram Start</button>
                 </div>
 
                 <div class="relative bg-gradient-to-b from-dark-800 to-dark-900 rounded-3xl p-8 border border-gold-500/50 shadow-2xl shadow-gold-500/10 flex flex-col transform md:-translate-y-4">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold-500 text-dark-900 px-4 py-1 rounded-full text-xs font-bold uppercase">Najczęściej wybierany</div>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold-500 text-dark-900 px-4 py-1 rounded-full text-xs font-bold uppercase">Polecany</div>
                     <h3 class="text-gold-400 font-bold uppercase tracking-wider mb-2">Pakiet Premium</h3>
                     <div class="text-4xl font-bold text-white mb-6">129 zł <span class="text-base font-normal text-slate-500">/mc</span></div>
                     <ul class="space-y-4 mb-8 text-slate-300 text-sm flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> <strong>Nielimitowane</strong> ebooki i audiobooki</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> Pełne Workbooki Terapeutyczne</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> Nowości przedpremierowo</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> <strong>Pełny dostęp</strong> do biblioteki</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> Wszystkie Audiobooki</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-gold-400"></i> Odblokowanie wszystkich kłódek</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition shadow-lg">Dołącz do Premium</a>
+                    <button onclick="toggleUserStatus(true)" class="block w-full py-3 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition shadow-lg">Kup Dostęp i Odblokuj</button>
                 </div>
 
                 <div class="glass-dark rounded-3xl p-8 border border-white/5 hover:border-white/20 transition duration-300 flex flex-col">
@@ -178,7 +286,7 @@
                         <li class="flex gap-3"><i class="fa-solid fa-star text-gold-400"></i> 1 konsultacja online</li>
                         <li class="flex gap-3"><i class="fa-solid fa-lock text-slate-500"></i> Stała gwarancja ceny</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition">Wybieram VIP</a>
+                    <button class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition">Wybieram VIP</button>
                 </div>
             </div>
         </div>
@@ -207,5 +315,60 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleUserStatus(isPremium) {
+            const locks = document.querySelectorAll('.premium-lock');
+            const downloads = document.querySelectorAll('.premium-download');
+            const visuals = document.querySelectorAll('.locked-visual');
+            const btnGuest = document.getElementById('btnGuest');
+            const btnMember = document.getElementById('btnMember');
+            const navAuthBtn = document.getElementById('navAuthBtn');
+
+            if (isPremium) {
+                // Pokaż wersję dla ZALOGOWANEGO
+                locks.forEach(el => el.classList.add('hidden'));
+                downloads.forEach(el => el.classList.remove('hidden'));
+                visuals.forEach(el => {
+                    el.style.filter = "grayscale(0)";
+                    el.style.opacity = "1";
+                });
+                
+                // UI Toggle buttons
+                btnGuest.classList.remove('bg-gold-500', 'text-black');
+                btnGuest.classList.add('bg-dark-700', 'text-white');
+                
+                btnMember.classList.add('bg-gold-500', 'text-black');
+                btnMember.classList.remove('bg-dark-700', 'text-white');
+
+                // Nav Button change
+                navAuthBtn.innerHTML = '<i class="fa-solid fa-user-check mr-2"></i> Konto Premium';
+                navAuthBtn.classList.add('text-gold-400', 'border-gold-500/50');
+                
+                // Scroll to featured to show effect
+                document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+
+            } else {
+                // Pokaż wersję dla GOŚCIA
+                locks.forEach(el => el.classList.remove('hidden'));
+                downloads.forEach(el => el.classList.add('hidden'));
+                visuals.forEach(el => {
+                    el.style.filter = "grayscale(0.8)";
+                    el.style.opacity = "0.7";
+                });
+
+                // UI Toggle buttons
+                btnGuest.classList.add('bg-gold-500', 'text-black');
+                btnGuest.classList.remove('bg-dark-700', 'text-white');
+                
+                btnMember.classList.remove('bg-gold-500', 'text-black');
+                btnMember.classList.add('bg-dark-700', 'text-white');
+
+                // Nav Button reset
+                navAuthBtn.innerHTML = '<i class="fa-regular fa-user mr-2"></i> Zaloguj';
+                navAuthBtn.classList.remove('text-gold-400', 'border-gold-500/50');
+            }
+        }
+    </script>
 </body>
 </html>
