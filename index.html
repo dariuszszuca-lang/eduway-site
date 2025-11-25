@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduWay by MyWay - Edukacja i Trzeźwość</title>
+    <meta name="description" content="Edukacja która pomaga zrozumieć trzeźwość. Platforma Ośrodka MyWay.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,12 +23,10 @@
                         'float': 'float 8s ease-in-out infinite',
                         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'glow': 'glow 4s ease-in-out infinite alternate',
-                        'wave': 'wave 1.2s linear infinite',
                     },
                     keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0) scale(1)' }, '50%': { transform: 'translateY(-15px) scale(1.05)' } },
-                        glow: { '0%': { opacity: 0.3 }, '100%': { opacity: 0.6 } },
-                        wave: { '0%, 100%': { height: '10%' }, '50%': { height: '100%' } }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        glow: { '0%': { opacity: 0.4 }, '100%': { opacity: 0.7 } }
                     }
                 }
             }
@@ -43,7 +42,7 @@
         }
         .glass-card:hover {
             border-color: rgba(251, 191, 36, 0.4);
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
         .text-gold-gradient {
@@ -51,23 +50,30 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        /* WOW GRAPHICS STYLES */
-        .art-canvas { position: relative; overflow: hidden; }
-        .art-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.6; }
-        
-        /* Nawroty (Red/Dark) */
-        .art-nawroty .blob-1 { top: -20%; left: -20%; width: 120%; height: 120%; background: radial-gradient(circle, #7f1d1d 0%, transparent 70%); animation: pulse-slow 4s infinite; }
-        .art-nawroty .blob-2 { bottom: -30%; right: -30%; width: 100%; height: 100%; background: #b91c1c; animation: float 6s infinite reverse; }
-        
-        /* Dziecko (Purple/Soft) */
-        .art-dziecko .blob-1 { top: 10%; left: 10%; width: 80%; height: 80%; background: #7c3aed; filter: blur(80px); animation: float 8s infinite; }
-        .art-dziecko .blob-2 { top: 40%; right: 20%; width: 60%; height: 60%; background: #c026d3; filter: blur(60px); animation: float 5s infinite reverse; }
 
-        /* Myths (Blue/Clear) */
-        .art-mit .blob-1 { top: -50%; left: 0; width: 100%; height: 150%; background: conic-gradient(from 90deg at 50% 50%, #0f172a 0%, #0ea5e9 50%, #0f172a 100%); opacity: 0.3; animation: spin 10s linear infinite; }
-        .art-mit .blob-2 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 50%; background: #38bdf8; filter: blur(70px); }
+        /* --- STYLOWANIE GRAFIK (LIQUID MESH) --- */
+        .mesh-canvas { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        .mesh-bg {
+            position: absolute; inset: -50%; width: 200%; height: 200%;
+            background-size: 100% 100%; animation: mesh-spin 15s linear infinite; opacity: 0.8;
+        }
+        .glass-tile {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80px; height: 80px;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Kolory Mesh */
+        .mesh-purple { background: radial-gradient(circle at 50% 50%, #581c87 0%, #0f172a 50%, #4c1d95 100%); }
+        .mesh-blue { background: radial-gradient(circle at 50% 50%, #1e3a8a 0%, #0f172a 50%, #172554 100%); }
+        .mesh-red { background: radial-gradient(circle at 50% 50%, #7f1d1d 0%, #0f172a 50%, #450a0a 100%); }
+        .mesh-teal { background: radial-gradient(circle at 50% 50%, #0f766e 0%, #0f172a 50%, #115e59 100%); }
 
+        @keyframes mesh-spin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
     </style>
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-black">
@@ -129,8 +135,37 @@
         </div>
     </section>
 
+    <section class="py-12 border-y border-white/5 bg-dark-800/50">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-book-open text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Ebooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-headphones text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Audiobooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-pen-to-square text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Workbooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-list-check text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Poradniki</h3>
+            </div>
+        </div>
+    </section>
+
     <section id="featured" class="py-24 px-6 relative">
-        <div class="container mx-auto max-w-6xl">
+        <div class="container mx-auto max-w-7xl">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Bestsellery EduWay</h2>
@@ -141,68 +176,100 @@
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group">
-                    <div class="art-canvas h-64 bg-dark-800 art-mit flex items-center justify-center relative">
-                        <div class="art-blob blob-1"></div>
-                        <div class="art-blob blob-2"></div>
-                        <div class="relative z-10 text-center">
-                            <i class="fa-solid fa-lightbulb text-6xl text-white drop-shadow-[0_0_25px_rgba(56,189,248,0.6)] animate-float"></i>
+                <div class="lg:col-span-7 glass-dark glass-card rounded-3xl overflow-hidden flex flex-col relative group border border-purple-500/20 h-full min-h-[500px]">
+                    <div class="h-[280px] lg:h-1/2 w-full relative mesh-canvas">
+                        <div class="mesh-bg mesh-purple"></div>
+                        <div class="glass-tile border-purple-500/30 w-24 h-24">
+                            <i class="fa-solid fa-hands-holding-child text-5xl text-white drop-shadow-lg"></i>
                         </div>
-                        <span class="absolute top-4 left-4 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">EBOOK</span>
+                        <span class="absolute top-6 left-6 bg-purple-500/20 text-purple-200 border border-purple-500/30 text-xs font-bold px-4 py-2 rounded-full backdrop-blur-md uppercase tracking-widest">
+                            <i class="fa-solid fa-star mr-2 text-yellow-400"></i> Polecany Ebook
+                        </span>
                     </div>
                     
-                    <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-white mb-2">5 Mitów o uzależnieniu</h3>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">Fundamentalna wiedza, która obala stereotypy. Dowiedz się, dlaczego to choroba mózgu, a nie kwestia woli.</p>
-                        
-                        <a href="5-mitow-o-uzaleznieniu-prawda-ktora-ratuje-rodziny.pdf" target="_blank" class="w-full py-4 rounded-xl bg-white/5 text-white font-semibold text-center hover:bg-white/10 transition border border-white/10 flex items-center justify-center gap-2 group-hover:border-gold-500/30">
-                            <i class="fa-solid fa-download"></i> Pobierz PDF
-                        </a>
-                    </div>
-                </div>
-
-                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group border border-white/5">
-                    <div class="art-canvas h-64 bg-dark-800 art-nawroty flex items-center justify-center relative">
-                        <div class="art-blob blob-1"></div>
-                        <div class="art-blob blob-2"></div>
-                        <div class="relative z-10 text-center animate-float">
-                            <i class="fa-solid fa-triangle-exclamation text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]"></i>
+                    <div class="p-8 lg:p-10 flex-1 flex flex-col justify-between bg-gradient-to-b from-dark-800/50 to-dark-900/80">
+                        <div>
+                            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">Dziecko w cieniu alkoholu</h3>
+                            <p class="text-slate-300 text-base lg:text-lg leading-relaxed mb-6">
+                                Głębokie i poruszające studium o syndromie DDA. Zrozum, jakie role przyjmują dzieci w rodzinach dysfunkcyjnych ("Bohater", "Kozioł ofiarny") i jak te schematy wpływają na dorosłe życie. Przewodnik niezbędny w procesie uzdrawiania wewnętrznego dziecka.
+                            </p>
                         </div>
-                        <span class="absolute top-4 left-4 bg-red-500/20 text-red-300 border border-red-500/30 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">WORKBOOK</span>
-                    </div>
-
-                    <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-white mb-2">Nawroty - jak ich uniknąć?</h3>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">Zaawansowany zeszyt ćwiczeń. Zbuduj osobisty plan awaryjny i naucz się rozpoznawać sygnały ostrzegawcze.</p>
-                        
-                        <a href="Nawroty-jak-ich-uniknac-przewodnik-po-sygnalach-ostrzegawczych-wyzwalaczach-i-strategiach-zapobiegan.pdf" target="_blank" class="w-full py-4 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-                            <i class="fa-solid fa-file-arrow-down"></i> Pobierz Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="glass-dark glass-card rounded-3xl overflow-hidden flex flex-col group border border-white/5">
-                    <div class="art-canvas h-64 bg-dark-800 art-dziecko flex items-center justify-center relative">
-                        <div class="art-blob blob-1"></div>
-                        <div class="art-blob blob-2"></div>
-                        <div class="relative z-10 text-center animate-float">
-                            <i class="fa-solid fa-hands-holding-child text-6xl text-purple-400 drop-shadow-[0_0_30px_rgba(192,132,252,0.5)]"></i>
+                        <div class="flex items-center gap-4 mt-4">
+                            <a href="Dziecko-w-cieniu-alkoholu-2.pdf" target="_blank" class="px-8 py-4 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 transform group-hover:scale-105">
+                                <i class="fa-solid fa-file-arrow-down"></i> Pobierz Ebook
+                            </a>
+                            <span class="text-slate-500 text-sm"><i class="fa-regular fa-file-pdf mr-1"></i> PDF • 10 stron</span>
                         </div>
-                        <span class="absolute top-4 left-4 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">EBOOK</span>
-                    </div>
-
-                    <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-white mb-2">Dziecko w cieniu alkoholu</h3>
-                        <p class="text-slate-400 text-sm mb-6 flex-1">Poruszająca lektura o syndromie DDA. Zrozum rolę "Bohatera" i "Kozła ofiarnego" w systemie rodzinnym.</p>
-                        
-                        <a href="Dziecko-w-cieniu-alkoholu-2.pdf" target="_blank" class="w-full py-4 rounded-xl bg-white/5 text-white font-semibold text-center hover:bg-white/10 transition border border-white/10 flex items-center justify-center gap-2 group-hover:border-gold-500/30">
-                            <i class="fa-solid fa-file-arrow-down"></i> Pobierz Ebook
-                        </a>
                     </div>
                 </div>
 
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-blue"></div>
+                            <div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-lightbulb text-3xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Ebook</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-brand-500 transition">5 Mitów o uzależnieniu</h4>
+                            <a href="5-mitow-o-uzaleznieniu-prawda-ktora-ratuje-rodziny.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-red"></div>
+                            <div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-triangle-exclamation text-3xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-red-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Workbook</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-red-400 transition">Nawroty - jak ich uniknąć?</h4>
+                            <a href="Nawroty-jak-ich-uniknac-przewodnik-po-sygnalach-ostrzegawczych-wyzwalaczach-i-strategiach-zapobiegan.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-teal"></div>
+                            <div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-comments text-3xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-teal-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Poradnik</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-teal-400 transition">Jak rozmawiać z bliskim?</h4>
+                            <a href="Jak-rozmawiac-z-bliskim-o-problemie.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 relative">
+        <div class="container mx-auto max-w-4xl">
+            <div class="relative rounded-3xl overflow-hidden p-10 text-center shadow-2xl border border-white/10 group">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-900 via-purple-900 to-dark-900 opacity-90"></div>
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                
+                <div class="relative z-10">
+                    <span class="inline-block px-4 py-1 bg-white/10 rounded-full text-xs font-bold text-purple-300 mb-4 border border-white/10 uppercase tracking-widest">Bezpłatny Newsletter</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Dołącz do Trzeźwego Startu</h2>
+                    <p class="text-slate-300 text-lg mb-8 max-w-xl mx-auto">
+                        Otrzymuj cotygodniową dawkę wiedzy, inspiracji i praktycznych ćwiczeń prosto na swoją skrzynkę mailową. Zbuduj nawyk rozwoju.
+                    </p>
+                    <a href="https://myway-newsletter.pl/trzezwy-start/" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-purple-900 font-bold rounded-xl hover:bg-purple-50 transition transform group-hover:scale-105 shadow-lg">
+                        <i class="fa-regular fa-paper-plane"></i> Zapisz się teraz
+                    </a>
+                </div>
             </div>
         </div>
     </section>
