@@ -1,312 +1,410 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduWay by MyWay | Platforma Edukacyjna</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <title>EduWay by MyWay - Edukacja i Trzeźwość</title>
+    <meta name="description" content="Edukacja która pomaga zrozumieć trzeźwość. Platforma Ośrodka MyWay.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
                     colors: {
-                        primary: {
-                            DEFAULT: '#14b8a6', // Turkus MyWay
-                            dark: '#0f766e',
-                            light: '#ccfbf1',
-                        },
-                        beige: {
-                            DEFAULT: '#F3E5AB', // Pastelowy beż
-                            light: '#fdfbf7',
-                        },
-                        dark: '#1e293b'
+                        dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' },
+                        gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+                        brand: { 500: '#0ea5e9' }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 4s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        glow: { '0%': { opacity: 0.4 }, '100%': { opacity: 0.7 } }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Dodatkowe style dla płynnego przewijania */
-        html { scroll-behavior: smooth; }
-        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-dark {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #fcd34d 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- STYLOWANIE GRAFIK (LIQUID MESH) --- */
+        .mesh-canvas { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        .mesh-bg {
+            position: absolute; inset: -50%; width: 200%; height: 200%;
+            background-size: 100% 100%; animation: mesh-spin 15s linear infinite; opacity: 0.8;
+        }
+        .glass-tile {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80px; height: 80px;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Kolory Mesh */
+        .mesh-purple { background: radial-gradient(circle at 50% 50%, #581c87 0%, #0f172a 50%, #4c1d95 100%); }
+        .mesh-blue { background: radial-gradient(circle at 50% 50%, #1e3a8a 0%, #0f172a 50%, #172554 100%); }
+        .mesh-red { background: radial-gradient(circle at 50% 50%, #7f1d1d 0%, #0f172a 50%, #450a0a 100%); }
+        .mesh-teal { background: radial-gradient(circle at 50% 50%, #0f766e 0%, #0f172a 50%, #115e59 100%); }
+
+        @keyframes mesh-spin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="antialiased selection:bg-gold-500 selection:text-black">
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all">
+    <nav class="fixed w-full z-50 glass-dark border-b border-white/5">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="group">
-                <div class="font-serif text-2xl font-bold text-dark tracking-tight group-hover:text-primary transition">EduWay</div>
-                <div class="text-[10px] uppercase tracking-[0.3em] text-slate-400 group-hover:text-primary/70">by MyWay</div>
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-dark-900 shadow-lg shadow-gold-500/20">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-white leading-none">EduWay</span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-gold-400 font-semibold mt-1">by MyWay</span>
+                </div>
             </a>
-
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#o-nas" class="text-sm font-medium text-slate-600 hover:text-primary transition">O nas</a>
-                <a href="#biblioteka" class="text-sm font-medium text-slate-600 hover:text-primary transition">Biblioteka Wiedzy</a>
-                <a href="#premium" class="text-sm font-medium text-slate-600 hover:text-primary transition">Strefa Premium</a>
-                <a href="#" class="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary-dark transition shadow-md hover:shadow-lg flex items-center gap-2">
-                    <i class="fa-regular fa-user"></i> Strefa Pacjenta
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+                <a href="biblioteka.html" class="hover:text-gold-400 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i> Biblioteka
+                </a>
+                <a href="#featured" class="hover:text-gold-400 transition-colors">Wyróżnione</a>
+                <a href="#premium" class="hover:text-gold-400 transition-colors">Premium</a>
+                <a href="#contact" class="hover:text-gold-400 transition-colors">Kontakt</a>
+                <a href="biblioteka.html" class="px-5 py-2.5 rounded-full bg-gold-500 text-dark-900 font-bold hover:bg-gold-400 transition shadow-lg shadow-gold-500/20">
+                    Strefa Wiedzy
                 </a>
             </div>
-
-            <button onclick="toggleMenu()" class="md:hidden text-2xl text-slate-700 focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="hidden bg-white border-t border-slate-100 md:hidden p-6 space-y-4 shadow-xl absolute w-full">
-            <a href="#o-nas" class="block text-lg font-medium text-slate-700">O nas</a>
-            <a href="#biblioteka" class="block text-lg font-medium text-slate-700">Biblioteka</a>
-            <a href="#premium" class="block text-lg font-medium text-slate-700">Premium</a>
-            <a href="#" class="block w-full text-center py-3 bg-primary text-white rounded-lg mt-4">Zaloguj się</a>
         </div>
     </nav>
 
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[85vh] flex items-center justify-center">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2000" alt="Spokój" class="w-full h-full object-cover opacity-90">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40"></div>
-        </div>
+    <section class="relative pt-44 pb-24 lg:pt-56 lg:pb-36 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] -z-10 animate-glow"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[100px] -z-10"></div>
 
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <span class="fade-in-up inline-block py-1 px-4 rounded-full bg-white/10 border border-white/20 text-primary-light text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
-                Platforma Edukacyjna
-            </span>
-            <h1 class="fade-in-up delay-100 text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight mb-6">
-                Zrozumieć siebie.<br/>
-                <span class="text-primary-light italic">Odzyskać równowagę.</span>
+        <div class="container mx-auto text-center max-w-5xl relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gold-400">Dostęp Otwarty</span>
+            </div>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
+                Edukacja która pomaga <br>
+                <span class="text-gold-gradient">zrozumieć trzeźwość.</span>
             </h1>
-            <p class="fade-in-up delay-200 text-lg text-slate-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                Bezpieczna przestrzeń edukacyjna Ośrodka MyWay. Dostęp do wiedzy ekspertów, webinarów i materiałów wspierających leczenie uzależnień.
+
+            <p class="text-lg text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Innowacyjna platforma edukacyjna Ośrodka Leczenia Uzależnień MyWay. 
+                Poradniki, Audiobooki i Ebooki w jednym miejscu. 
+                Praktyczna wiedza doświadczonych ekspertów o uzależnieniach, emocjach, transformacji i procesach zdrowienia.
             </p>
-            <div class="fade-in-up delay-200 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#biblioteka" class="px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-semibold transition shadow-lg shadow-primary/30">
-                    Przeglądaj Bibliotekę
-                </a>
-                <a href="#premium" class="px-8 py-4 bg-white text-slate-900 hover:bg-slate-100 rounded-full font-semibold transition">
-                    Poznaj Premium
-                </a>
-            </div>
-        </div>
-    </header>
 
-    <section id="o-nas" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="text-center p-6 rounded-2xl hover:bg-slate-50 transition duration-300 group cursor-default">
-                    <div class="w-16 h-16 mx-auto bg-primary-light/50 text-primary-dark rounded-full flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-serif">Wiedza Kliniczna</h3>
-                    <p class="text-slate-500 leading-relaxed">Materiały tworzone wyłącznie przez certyfikowanych terapeutów i lekarzy ośrodka MyWay.</p>
-                </div>
-                <div class="text-center p-6 rounded-2xl hover:bg-slate-50 transition duration-300 group cursor-default">
-                    <div class="w-16 h-16 mx-auto bg-primary-light/50 text-primary-dark rounded-full flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-video"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-serif">Nowoczesna Forma</h3>
-                    <p class="text-slate-500 leading-relaxed">Webinary, podcasty i interaktywne workbooki zamiast nudnych tekstów.</p>
-                </div>
-                <div class="text-center p-6 rounded-2xl hover:bg-slate-50 transition duration-300 group cursor-default">
-                    <div class="w-16 h-16 mx-auto bg-primary-light/50 text-primary-dark rounded-full flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-shield-heart"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 font-serif">Anonimowość</h3>
-                    <p class="text-slate-500 leading-relaxed">Uczysz się we własnym tempie, w bezpiecznej przestrzeni, bez oceniania.</p>
-                </div>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="biblioteka.html" class="px-8 py-4 rounded-xl bg-gold-500 text-dark-900 font-bold hover:bg-gold-400 shadow-xl shadow-gold-500/20 transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> Przeglądaj Bibliotekę
+                </a>
+                <a href="#featured" class="px-8 py-4 rounded-xl bg-white/5 text-white font-semibold border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-star text-gold-400"></i> Wyróżnione
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="biblioteka" class="py-24 bg-beige-light">
-        <div class="container mx-auto px-6">
+    <section class="py-12 border-y border-white/5 bg-dark-800/50">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-book-open text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Ebooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-headphones text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Audiobooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-pen-to-square text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Workbooki</h3>
+            </div>
+            <div class="group">
+                <div class="w-16 h-16 mx-auto bg-dark-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gold-500 transition-colors duration-300 shadow-lg">
+                    <i class="fa-solid fa-list-check text-2xl text-gold-500 group-hover:text-dark-900"></i>
+                </div>
+                <h3 class="font-bold text-white">Poradniki</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured" class="py-24 px-6 relative">
+        <div class="container mx-auto max-w-7xl">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div class="max-w-xl">
-                    <span class="text-primary font-bold tracking-wider uppercase text-xs">Edukacja</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-dark mt-2">Ostatnio dodane materiały</h2>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Bestsellery EduWay</h2>
+                    <p class="text-slate-400">Najczęściej wybierane materiały wspierające terapię.</p>
                 </div>
-                <a href="#" class="hidden md:inline-block text-primary font-bold hover:underline mt-4 md:mt-0">Zobacz całą bibliotekę &rarr;</a>
+                <a href="biblioteka.html" class="text-gold-400 hover:text-white font-semibold transition mt-4 md:mt-0 flex items-center gap-2 group">
+                    Zobacz całą bibliotekę <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition"></i>
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Zdrowie">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold uppercase text-dark">Wideo</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-primary text-xs font-bold mb-2">TERAPIA</div>
-                        <h3 class="text-xl font-bold text-dark mb-3 group-hover:text-primary transition">Mechanizmy uzależnień</h3>
-                        <p class="text-slate-500 text-sm mb-4">Wprowadzenie do zrozumienia biochemii mózgu w procesie leczenia.</p>
-                        <a href="#" class="text-sm font-bold text-primary hover:text-primary-dark">Oglądaj teraz &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544367563-12123d8966cd?q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Joga">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded text-xs font-bold uppercase text-dark">Ebook</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-primary text-xs font-bold mb-2">ROZWÓJ OSOBISTY</div>
-                        <h3 class="text-xl font-bold text-dark mb-3 group-hover:text-primary transition">Radzenie sobie ze stresem</h3>
-                        <p class="text-slate-500 text-sm mb-4">Praktyczny poradnik z ćwiczeniami oddechowymi i technikami mindfulness.</p>
-                        <a href="#" class="text-sm font-bold text-primary hover:text-primary-dark">Pobierz PDF &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 group relative border border-amber-100">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-amber-400"></div>
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-dark/60 flex items-center justify-center z-10">
-                            <i class="fa-solid fa-lock text-white text-3xl"></i>
+                <div class="lg:col-span-7 glass-dark glass-card rounded-3xl overflow-hidden flex flex-col relative group border border-purple-500/20 h-full min-h-[500px]">
+                    <div class="h-[280px] lg:h-1/2 w-full relative mesh-canvas">
+                        <div class="mesh-bg mesh-purple"></div>
+                        <div class="glass-tile border-purple-500/30 w-24 h-24">
+                            <i class="fa-solid fa-hands-holding-child text-5xl text-white drop-shadow-lg"></i>
                         </div>
-                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800" class="w-full h-full object-cover blur-[2px]" alt="Rodzina">
-                        <div class="absolute top-4 right-4 bg-amber-400 text-white px-3 py-1 rounded text-xs font-bold uppercase z-20">Premium</div>
+                        <span class="absolute top-6 left-6 bg-purple-500/20 text-purple-200 border border-purple-500/30 text-xs font-bold px-4 py-2 rounded-full backdrop-blur-md uppercase tracking-widest">
+                            <i class="fa-solid fa-star mr-2 text-yellow-400"></i> Polecany Ebook
+                        </span>
                     </div>
-                    <div class="p-6">
-                        <div class="text-amber-600 text-xs font-bold mb-2">RODZINA</div>
-                        <h3 class="text-xl font-bold text-dark mb-3">Współuzależnienie - Kurs</h3>
-                        <p class="text-slate-500 text-sm mb-4">Kompletny 4-tygodniowy kurs dla bliskich osób uzależnionych.</p>
-                        <a href="#premium" class="text-sm font-bold text-amber-600 hover:text-amber-700">Odblokuj dostęp &rarr;</a>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="text-center mt-8 md:hidden">
-                <a href="#" class="inline-block text-primary font-bold hover:underline">Zobacz całą bibliotekę &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="premium" class="py-24 bg-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-primary opacity-5 skew-x-12 transform translate-x-20"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2">
-                    <h2 class="text-4xl font-serif font-bold mb-6">Dołącz do <span class="text-primary">EduWay Premium</span></h2>
-                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
-                        Zyskaj nieograniczony dostęp do wiedzy, która zmienia życie. Pakiety stworzone z myślą o ciągłym rozwoju i wsparciu procesu terapeutycznego.
-                    </p>
                     
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i class="fa-solid fa-check text-primary"></i> Pełen dostęp do wszystkich kursów wideo
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i class="fa-solid fa-check text-primary"></i> Workbooki i karty pracy (PDF)
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i class="fa-solid fa-check text-primary"></i> Certyfikaty ukończenia szkoleń
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-300">
-                            <i class="fa-solid fa-check text-primary"></i> Comiesięczne Q&A z terapeutą
-                        </li>
-                    </ul>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer w-full sm:w-auto">
-                            <div class="text-sm text-slate-400 mb-1">Miesięcznie</div>
-                            <div class="text-2xl font-bold text-white">49 zł</div>
+                    <div class="p-8 lg:p-10 flex-1 flex flex-col justify-between bg-gradient-to-b from-dark-800/50 to-dark-900/80">
+                        <div>
+                            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">Dziecko w cieniu alkoholu</h3>
+                            <p class="text-slate-300 text-base lg:text-lg leading-relaxed mb-6">
+                                Głębokie i poruszające studium o syndromie DDA. Zrozum, jakie role przyjmują dzieci w rodzinach dysfunkcyjnych ("Bohater", "Kozioł ofiarny") i jak te schematy wpływają na dorosłe życie. Przewodnik niezbędny w procesie uzdrawiania wewnętrznego dziecka.
+                            </p>
                         </div>
-                        <div class="p-6 rounded-xl bg-primary/20 border border-primary/50 hover:bg-primary/30 transition cursor-pointer w-full sm:w-auto relative">
-                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-xs font-bold px-2 py-1 rounded text-white">POLECANY</div>
-                            <div class="text-sm text-primary-light mb-1">Rocznie</div>
-                            <div class="text-2xl font-bold text-white">399 zł</div>
+                        <div class="flex items-center gap-4 mt-4">
+                            <a href="Dziecko-w-cieniu-alkoholu-2.pdf" target="_blank" class="px-8 py-4 rounded-xl bg-gold-500 text-dark-900 font-bold text-center hover:bg-gold-400 transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 transform group-hover:scale-105">
+                                <i class="fa-solid fa-file-arrow-down"></i> Pobierz Ebook
+                            </a>
+                            <span class="text-slate-500 text-sm"><i class="fa-regular fa-file-pdf mr-1"></i> PDF • 10 stron</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="w-full max-w-lg aspect-video bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 flex flex-col overflow-hidden relative group">
-                         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Terapia">
-                         <div class="absolute inset-0 flex items-center justify-center">
-                             <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition duration-300 cursor-pointer">
-                                 <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
-                             </div>
-                         </div>
-                         <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
-                             <div class="text-xs text-primary font-bold mb-1">TYLKO W PREMIUM</div>
-                             <div class="text-white font-bold">Jak budować zdrowe granice?</div>
-                         </div>
+
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-blue"></div>
+                            <div class="glass-tile border-blue-500/30 w-12 h-12 rounded-lg"><i class="fa-solid fa-lightbulb text-2xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Ebook</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-brand-500 transition">5 Mitów o uzależnieniu</h4>
+                            <a href="5-mitow-o-uzaleznieniu-prawda-ktora-ratuje-rodziny.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
                     </div>
+
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-red"></div>
+                            <div class="glass-tile border-red-500/30 w-12 h-12 rounded-lg"><i class="fa-solid fa-triangle-exclamation text-2xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-red-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Workbook</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-red-400 transition">Nawroty - jak ich uniknąć?</h4>
+                            <a href="Nawroty-jak-ich-uniknac-przewodnik-po-sygnalach-ostrzegawczych-wyzwalaczach-i-strategiach-zapobiegan.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="glass-dark glass-card rounded-2xl p-4 flex items-center gap-6 group border border-white/5 hover:bg-white/5 transition h-full">
+                        <div class="w-24 h-24 rounded-xl relative overflow-hidden flex-shrink-0 mesh-canvas">
+                            <div class="mesh-bg mesh-teal"></div>
+                            <div class="glass-tile border-teal-500/30 w-12 h-12 rounded-lg"><i class="fa-solid fa-comments text-2xl text-white"></i></div>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-teal-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">Poradnik</span>
+                            <h4 class="text-lg font-bold text-white mb-1 group-hover:text-teal-400 transition">Jak rozmawiać z bliskim?</h4>
+                            <a href="Jak-rozmawiac-z-bliskim-o-problemie.pdf" target="_blank" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-1 mt-2">
+                                Pobierz <i class="fa-solid fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
+    <section class="py-16 px-6 relative border-t border-white/5">
+        <div class="container mx-auto max-w-4xl">
+            <div class="relative rounded-3xl overflow-hidden p-10 text-center shadow-2xl border border-white/10 group">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-900 via-purple-900 to-dark-900 opacity-90"></div>
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
                 
-                <div>
-                    <div class="font-serif text-2xl font-bold text-white mb-4">EduWay</div>
-                    <p class="text-sm mb-6">Platforma edukacyjna Ośrodka Leczenia Uzależnień MyWay. Twoja droga do zdrowia.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6">Ośrodek</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-white transition">O nas</a></li>
-                        <li><a href="#" class="hover:text-white transition">Kadra</a></li>
-                        <li><a href="#" class="hover:text-white transition">Metody leczenia</a></li>
-                        <li><a href="#" class="hover:text-white transition">Cennik</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6">Wsparcie</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white transition">Polityka Prywatności</a></li>
-                        <li><a href="#" class="hover:text-white transition">Regulamin</a></li>
-                        <li><a href="#" class="hover:text-white transition">Kontakt</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6">Kontakt</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-primary"></i> +48 123 456 789</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-primary"></i> kontakt@myway.pl</li>
-                        <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-primary mt-1"></i> ul. Spokojna 1<br>00-001 Warszawa</li>
-                    </ul>
+                <div class="relative z-10">
+                    <span class="inline-block px-4 py-1 bg-white/10 rounded-full text-xs font-bold text-purple-300 mb-4 border border-white/10 uppercase tracking-widest">Bezpłatny Newsletter</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Dołącz i odbierz darmowy poradnik Trzeźwy Start</h2>
+                    <p class="text-slate-300 text-lg mb-8 max-w-xl mx-auto">
+                        Otrzymuj cotygodniową dawkę wiedzy, inspiracji i praktycznych ćwiczeń prosto na swoją skrzynkę mailową. Zbuduj nawyk rozwoju.
+                    </p>
+                    <a href="https://myway-newsletter.pl/trzezwy-start/" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-purple-900 font-bold rounded-xl hover:bg-purple-50 transition transform group-hover:scale-105 shadow-lg">
+                        <i class="fa-regular fa-paper-plane"></i> Zapisz się teraz
+                    </a>
                 </div>
             </div>
-            <div class="pt-8 text-center text-xs">
-                &copy; 2025 EduWay by MyWay. Wszystkie prawa zastrzeżone.
+        </div>
+    </section>
+
+    <section id="premium" class="py-24 px-6 relative bg-dark-800/30">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <span class="text-gold-400 font-bold tracking-widest uppercase text-sm">EduWay Premium</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-4">Wybierz swoją ścieżkę</h2>
+                <p class="text-slate-400">Edukacja dostępna dla każdego. Zacznij za darmo lub przyspiesz z Premium.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                
+                <div class="glass-dark rounded-3xl p-8 border border-white/5 hover:border-white/10 transition duration-300 flex flex-col relative">
+                    <h3 class="text-slate-300 font-bold uppercase tracking-wider mb-2 text-sm">Darmowy Dostęp</h3>
+                    <div class="text-4xl font-bold text-white mb-6">0 zł <span class="text-base font-normal text-slate-500">/mc</span></div>
+                    
+                    <ul class="space-y-4 mb-8 text-slate-300 text-sm flex-1">
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-green-500"><i class="fa-solid fa-check"></i></div>
+                            <span>Wybrane Ebooki i Poradniki</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-green-500"><i class="fa-solid fa-check"></i></div>
+                            <span>Newsletter "Trzeźwy Start"</span>
+                        </li>
+                        <li class="flex gap-3 items-start opacity-50">
+                            <div class="mt-1 text-slate-500"><i class="fa-solid fa-xmark"></i></div>
+                            <span>Brak dostępu do Audiobooków</span>
+                        </li>
+                        <li class="flex gap-3 items-start opacity-50">
+                            <div class="mt-1 text-slate-500"><i class="fa-solid fa-xmark"></i></div>
+                            <span>Brak dostępu do Archiwum</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="biblioteka.html" class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition font-medium mt-auto">
+                        Przeglądaj za darmo
+                    </a>
+                </div>
+
+                <div class="relative bg-gradient-to-b from-dark-800 to-dark-900 rounded-3xl p-8 border-2 border-gold-500 shadow-2xl shadow-gold-500/20 flex flex-col transform md:-translate-y-4 z-10">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold-500 text-dark-900 px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-crown"></i> Polecany
+                    </div>
+                    
+                    <h3 class="text-gold-400 font-bold uppercase tracking-wider mb-2 text-sm">Pakiet Premium</h3>
+                    <div class="text-5xl font-bold text-white mb-2">39 zł <span class="text-base font-normal text-slate-500">/mc</span></div>
+                    <p class="text-xs text-slate-400 mb-6">Anuluj w dowolnym momencie.</p>
+                    
+                    <ul class="space-y-5 mb-10 text-white text-sm flex-1">
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-gold-400"><i class="fa-solid fa-check"></i></div>
+                            <span><strong>Dostęp do materiałów Premium</strong></span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-gold-400"><i class="fa-solid fa-headphones-simple"></i></div>
+                            <span>Pełna Biblioteka <strong>Audiobooków</strong> (Słuchaj w drodze)</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-gold-400"><i class="fa-solid fa-box-archive"></i></div>
+                            <span><strong>Archiwum</strong> wszystkich Workbooków (Nieograniczony dostęp)</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="block w-full py-4 rounded-xl bg-gold-500 text-dark-900 font-bold text-lg text-center hover:bg-gold-400 transition shadow-lg transform hover:scale-105 mt-auto">
+                        Dołącz do Premium
+                    </button>
+                </div>
+
+                <div class="glass-dark rounded-3xl p-8 border border-white/5 hover:border-white/10 transition duration-300 flex flex-col relative">
+                    <h3 class="text-slate-300 font-bold uppercase tracking-wider mb-2 text-sm">Roczny VIP</h3>
+                    <div class="text-4xl font-bold text-white mb-6">269 zł <span class="text-base font-normal text-slate-500">/rok</span></div>
+                    
+                    <div class="mb-6">
+                        <span class="text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/20 px-3 py-1 rounded uppercase tracking-wide font-bold">
+                            Oszczędzasz 200 zł
+                        </span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 text-slate-300 text-sm flex-1">
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-green-500"><i class="fa-solid fa-check"></i></div>
+                            <span>Wszystkie korzyści Premium na rok</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-gold-400"><i class="fa-solid fa-star"></i></div>
+                            <span class="text-white font-semibold">1 Indywidualna Konsultacja (30 min)</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-indigo-400"><i class="fa-brands fa-discord"></i></div>
+                            <span>Specjalny dostęp do społeczności <strong>Discord</strong></span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-green-500"><i class="fa-solid fa-tags"></i></div>
+                            <span>Zniżki na wybrane projekty MyWay</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <div class="mt-1 text-green-500"><i class="fa-solid fa-lock"></i></div>
+                            <span>Gwarancja stałej ceny odnowienia</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="block w-full py-3 rounded-xl border border-white/20 text-center text-white hover:bg-white/5 transition font-medium mt-auto">
+                        Wybieram VIP
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-dark-900 border-t border-white/5 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">EduWay <span class="text-gold-500 text-sm">by MyWay</span></h3>
+                    <p class="text-slate-500 text-sm max-w-md">Profesjonalne wsparcie w edukacji o uzależnieniach.</p>
+                </div>
+                <div class="flex flex-col gap-4 text-slate-300">
+                    <a href="mailto:kontakt@osrodek-myway.pl" class="flex items-center gap-3 hover:text-gold-400 transition">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+                        kontakt@osrodek-myway.pl
+                    </a>
+                    <a href="tel:731395295" class="flex items-center gap-3 hover:text-gold-400 transition">
+                        <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+                        731 395 295
+                    </a>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/5 text-center text-slate-600 text-xs">
+                &copy; 2025 EduWay by MyWay. Wszelkie prawa zastrzeżone.
             </div>
         </div>
     </footer>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-    </script>
 </body>
 </html>
