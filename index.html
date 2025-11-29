@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html lang="pl" class="scroll-smooth">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>EduWay by MyWay | Nowoczesna Edukacja w Terapii Uzależnień</title>
-    <meta name="description" content="EduWay to platforma edukacyjna premium. Pobierz ebooki o fazach trzeźwienia, mechanizmach głodu i obalaniu mitów o piciu kontrolowanym.">
-    <meta name="author" content="MyWay Ośrodek Terapii">
+    <title>EduWay by MyWay | Premium Platforma Edukacyjna o Zdrowiu i Rozwoju</title>
+    <meta name="description" content="EduWay to nowoczesna platforma edukacyjna ośrodka MyWay. Pobierz ebooki, workbooki i materiały wspierające leczenie uzależnień i rozwój osobisty.">
+    <meta name="keywords" content="leczenie uzależnień, edukacja, psychologia, ebooki, workbooki, MyWay, rozwój osobisty, zdrowie psychiczne">
+    <meta name="author" content="MyWay Ośrodek Leczenia Uzależnień">
+    <meta name="robots" content="index, follow">
     
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EduWay by MyWay | Wiedza, która leczy">
+    <meta property="og:description" content="Dołącz do strefy premium. Profesjonalne materiały edukacyjne, poradniki i wsparcie w procesie zdrowienia.">
+    <meta property="og:url" content="https://edu.osrodek-myway.pl">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                     colors: {
-                        primary: '#0f172a', /* Slate 900 - Ciemny luksusowy */
-                        secondary: '#0d9488', /* Teal 600 - Kolor zdrowia/uspokojenia */
-                        accent: '#f59e0b', /* Amber 500 - Złoty akcent premium */
-                        surface: '#f8fafc',
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                        primary: '#1e3a8a', /* Deep Blue - Trust */
+                        secondary: '#14b8a6', /* Teal/Mint - Calm/Growth */
+                        accent: '#fcd34d', /* Soft Gold - Premium */
+                        bgLight: '#f8fafc', /* Very light grey/blue */
+                        surface: '#ffffff',
                     }
                 }
             }
@@ -39,322 +43,307 @@
     </script>
 
     <style>
-        /* Efekt szkła (Glassmorphism) */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Animacje */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .float-anim { animation: float 6s ease-in-out infinite; }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* Ukrywanie paska przewijania w filtrach */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "EduWay by MyWay",
+      "url": "https://edu.osrodek-myway.pl",
+      "logo": "https://osrodek-myway.pl/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/osrodekmyway",
+        "https://www.instagram.com/osrodekmyway"
+      ],
+      "parentOrganization": {
+        "@type": "MedicalOrganization",
+        "name": "Ośrodek Leczenia Uzależnień MyWay",
+        "url": "https://osrodek-myway.pl"
+      }
+    }
+    </script>
 </head>
-<body class="font-sans text-slate-600 bg-[#F3F6F8] antialiased selection:bg-secondary selection:text-white">
+<body class="font-sans text-slate-700 bg-bgLight antialiased selection:bg-secondary selection:text-white">
 
-    <div class="fixed top-4 left-0 w-full z-50 px-4 flex justify-center">
-        <nav class="glass-nav rounded-full px-6 py-3 w-full max-w-5xl flex justify-between items-center transition-all duration-300" id="main-nav">
-            
-            <a href="#" class="flex items-center gap-2 group">
-                <div class="bg-primary text-white p-1.5 rounded-lg group-hover:bg-secondary transition-colors duration-300">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
-                </div>
-                <span class="font-serif text-xl font-bold text-slate-800 tracking-tight">EduWay<span class="text-secondary">.</span></span>
-            </a>
-
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#start" class="text-sm font-medium text-slate-600 hover:text-primary hover:-translate-y-0.5 transition-transform">Start</a>
-                <a href="#biblioteka" class="text-sm font-medium text-slate-600 hover:text-primary hover:-translate-y-0.5 transition-transform">Biblioteka</a>
-                <a href="#premium" class="text-sm font-medium text-slate-600 hover:text-primary hover:-translate-y-0.5 transition-transform">Premium</a>
-                <a href="#kontakt" class="text-sm font-medium text-slate-600 hover:text-primary hover:-translate-y-0.5 transition-transform">Kontakt</a>
-            </div>
-
-            <div class="hidden md:flex items-center gap-3">
-                <a href="#" class="text-sm font-semibold text-primary hover:text-secondary transition">Logowanie</a>
-                <a href="#premium" class="bg-primary text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 hover:shadow-lg transition-all transform hover:scale-105 active:scale-95">
-                    Dołącz teraz
-                </a>
-            </div>
-
-            <button id="menu-btn" class="md:hidden text-slate-800 p-2 hover:bg-slate-100 rounded-full transition">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </nav>
-    </div>
-
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-24 px-6 space-y-6">
-        <a href="#start" class="text-2xl font-serif font-bold text-slate-900 mobile-link">Start</a>
-        <a href="#biblioteka" class="text-2xl font-serif font-bold text-slate-900 mobile-link">Biblioteka Wiedzy</a>
-        <a href="#premium" class="text-2xl font-serif font-bold text-amber-600 mobile-link">Strefa Premium</a>
-        <a href="#kontakt" class="text-2xl font-serif font-bold text-slate-900 mobile-link">Kontakt</a>
-        <hr class="border-slate-100">
-        <a href="#" class="block w-full text-center bg-secondary text-white py-4 rounded-xl font-bold shadow-lg shadow-teal-200">Zaloguj się</a>
-        
-        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 bg-slate-50 rounded-full text-slate-500">
-            <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-    </div>
-
-    <section id="start" class="relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] rounded-full bg-teal-100/40 blur-[100px] -z-10 float-anim"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] rounded-full bg-blue-100/40 blur-[80px] -z-10 float-anim" style="animation-delay: 2s;"></div>
-
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-8 fade-in-up" style="animation-delay: 0.1s;">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">Platforma MyWay</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-serif font-bold text-slate-900 mb-8 leading-[1.1] fade-in-up" style="animation-delay: 0.2s;">
-                Zrozumieć. <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-teal-400">Przetrwać.</span><br/>
-                Odbudować życie.
-            </h1>
-            
-            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed fade-in-up" style="animation-delay: 0.3s;">
-                Profesjonalna baza wiedzy dla osób wychodzących z uzależnienia. 
-                Pobierz workbooki, poradniki i materiały terapeutyczne stworzone przez ekspertów.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up" style="animation-delay: 0.4s;">
-                <a href="#biblioteka" class="px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-slate-800 transition shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2 group">
-                    Przeglądaj materiały <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </a>
-                <a href="https://osrodek-myway.pl" target="_blank" class="px-8 py-4 rounded-full bg-white text-slate-700 font-semibold border border-slate-200 hover:border-secondary hover:text-secondary transition flex items-center justify-center gap-2">
-                    O ośrodku MyWay <i data-lucide="external-link" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="biblioteka" class="py-24 bg-white relative">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">Biblioteka Wiedzy</h2>
-                    [cite_start]<p class="text-slate-500 max-w-xl">Pobierz darmowe fragmenty lub uzyskaj pełen dostęp do specjalistycznych materiałów opracowanych na podstawie wieloletniej praktyki klinicznej[cite: 6, 207, 509].</p>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='#'">
+                    <span class="font-serif text-2xl font-bold text-primary">EduWay</span>
+                    <span class="text-xs uppercase tracking-widest text-slate-400 border-l pl-2 border-slate-300">by MyWay</span>
                 </div>
                 
-                <div class="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto no-scrollbar">
-                    <button class="px-5 py-2 rounded-full bg-slate-900 text-white text-sm font-medium whitespace-nowrap">Wszystkie</button>
-                    <button class="px-5 py-2 rounded-full bg-slate-100 text-slate-600 text-sm font-medium hover:bg-slate-200 transition whitespace-nowrap">Fizjologia</button>
-                    <button class="px-5 py-2 rounded-full bg-slate-100 text-slate-600 text-sm font-medium hover:bg-slate-200 transition whitespace-nowrap">Psychologia</button>
-                    <button class="px-5 py-2 rounded-full bg-slate-100 text-slate-600 text-sm font-medium hover:bg-slate-200 transition whitespace-nowrap">Strategie</button>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#start" class="text-sm font-medium hover:text-secondary transition">Start</a>
+                    <a href="#o-eduway" class="text-sm font-medium hover:text-secondary transition">O EduWay</a>
+                    <a href="#biblioteka" class="text-sm font-medium hover:text-secondary transition">Biblioteka Wiedzy</a>
+                    <a href="#premium" class="text-sm font-medium text-amber-600 hover:text-amber-700 transition">Premium</a>
+                    <a href="#kontakt" class="px-5 py-2.5 rounded-full bg-primary text-white text-sm font-medium hover:bg-blue-900 transition shadow-lg shadow-blue-900/20">Dołącz teraz</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-primary hover:text-secondary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                <a href="#start" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Start</a>
+                <a href="#o-eduway" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">O EduWay</a>
+                <a href="#biblioteka" class="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md">Biblioteka</a>
+                <a href="#premium" class="block px-3 py-3 text-base font-medium text-amber-600 hover:bg-amber-50 rounded-md">Premium</a>
+                <a href="#kontakt" class="block px-3 py-3 text-base font-medium text-primary font-bold">Kontakt</a>
+            </div>
+        </div>
+    </nav>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <header id="start" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-teal-50 blur-3xl opacity-50"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-50 blur-3xl opacity-50"></div>
 
-                <div class="group relative bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1">
-                    <div class="aspect-[4/3] rounded-2xl bg-teal-50 mb-6 overflow-hidden relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-teal-100/50 to-transparent"></div>
-                        <i data-lucide="activity" class="w-16 h-16 text-teal-600/20 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-teal-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ebook • Podstawy</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-secondary transition-colors">Głody Alkoholowe: Fizjologia i Psychologia</h3>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-3">
-                        Kompleksowe omówienie zjawiska głodu. [cite_start]Dowiedz się, jak organizm reaguje na brak alkoholu (drżenia, tachykardia) i jak natrętne myśli wpływają na psychikę[cite: 310, 319, 335, 336].
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#fizjologia</span>
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#objawy</span>
-                    </div>
-                    <a href="./ebooks/glody-alkoholowe.pdf" target="_blank" class="w-full py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm group-hover:bg-secondary group-hover:text-white group-hover:border-secondary transition-all flex items-center justify-center gap-2">
-                        Pobierz PDF <i data-lucide="download" class="w-4 h-4"></i>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto fade-in">
+                <span class="text-secondary font-semibold tracking-wider uppercase text-sm mb-4 block">Edukacja • Wsparcie • Rozwój</span>
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 mb-6 leading-tight">
+                    Odkryj drogę do <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">wewnętrznego spokoju</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed">
+                    EduWay to nowoczesna platforma edukacyjna stworzona przez specjalistów z MyWay. 
+                    Dajemy Ci narzędzia, wiedzę i wsparcie w procesie zdrowienia i rozwoju osobistego.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#biblioteka" class="px-8 py-4 rounded-full bg-primary text-white font-semibold shadow-lg shadow-blue-900/20 hover:bg-blue-900 hover:-translate-y-1 transition transform">
+                        Przeglądaj Bibliotekę
+                    </a>
+                    <a href="#premium" class="px-8 py-4 rounded-full bg-white text-primary border border-slate-200 font-semibold hover:bg-slate-50 hover:border-slate-300 transition">
+                        Poznaj Premium
                     </a>
                 </div>
+            </div>
+        </div>
+    </header>
 
-                <div class="group relative bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1">
-                    <div class="aspect-[4/3] rounded-2xl bg-blue-50 mb-6 overflow-hidden relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-100/50 to-transparent"></div>
-                        <i data-lucide="trending-up" class="w-16 h-16 text-blue-600/20 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Poradnik • Proces</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors">Miesiąc Miodowy i Co Dalej?</h3>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-3">
-                        [cite_start]Przewodnik po etapach zdrowienia: od trudnej fazy odwrotu, przez euforyczny "miesiąc miodowy", aż po niebezpieczną "fazę muru" i stabilizację[cite: 509, 522, 540, 564, 589].
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#fazy</span>
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#kryzys</span>
-                    </div>
-                    <a href="./ebooks/fazy-trzezwienia.pdf" target="_blank" class="w-full py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all flex items-center justify-center gap-2">
-                        Pobierz PDF <i data-lucide="download" class="w-4 h-4"></i>
-                    </a>
+    <section id="o-eduway" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Terapeuta pracujący z pacjentem" 
+                         class="rounded-2xl shadow-2xl w-full h-auto object-cover z-10 relative" 
+                         loading="lazy">
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/10 rounded-full -z-0"></div>
                 </div>
-
-                <div class="group relative bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1">
-                    <div class="aspect-[4/3] rounded-2xl bg-amber-50 mb-6 overflow-hidden relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-100/50 to-transparent"></div>
-                        <i data-lucide="clock" class="w-16 h-16 text-amber-600/20 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-amber-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Raport • Timeline</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-amber-500 transition-colors">Oś Czasu Zdrowienia</h3>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-3">
-                        Realistyczne spojrzenie na czas wychodzenia z uzależnienia. [cite_start]Szczegółowy opis zmian zachodzących w mózgu od detoksu po 2 lata abstynencji[cite: 1, 22, 48, 83, 105].
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">Wiedza, która wspiera terapię</h2>
+                    <p class="text-slate-600 mb-6 text-lg">
+                        EduWay to rozszerzenie misji ośrodka <a href="https://osrodek-myway.pl" target="_blank" class="text-primary underline decoration-secondary decoration-2 underline-offset-2">MyWay</a>. Wierzymy, że edukacja jest kluczem do trwałej zmiany.
                     </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#czas</span>
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#regeneracja</span>
-                    </div>
-                    <a href="./ebooks/os-czasu.pdf" target="_blank" class="w-full py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 transition-all flex items-center justify-center gap-2">
-                        Pobierz PDF <i data-lucide="download" class="w-4 h-4"></i>
-                    </a>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span class="text-slate-700">Materiały opracowane przez certyfikowanych terapeutów.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            <span class="text-slate-700">Dostęp do nowoczesnych narzędzi: Workbooki i Checklisty.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            <span class="text-slate-700">Bezpieczna przestrzeń i dyskrecja dla każdego użytkownika.</span>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="group relative bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1">
-                    <div class="aspect-[4/3] rounded-2xl bg-indigo-50 mb-6 overflow-hidden relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-100/50 to-transparent"></div>
-                        <i data-lucide="shield" class="w-16 h-16 text-indigo-600/20 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-indigo-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Workbook • Narzędzia</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-indigo-600 transition-colors">Metody Leczenia Głodu: HALT i CBT</h3>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-3">
-                        Praktyczne strategie radzenia sobie z głodem. [cite_start]Poznaj program HALT (Głodny, Zły, Samotny, Zmęczony) oraz techniki terapii poznawczo-behawioralnej[cite: 207, 262, 281].
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#HALT</span>
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#strategie</span>
-                    </div>
-                    <a href="./ebooks/leczenie-glodu-halt.pdf" target="_blank" class="w-full py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all flex items-center justify-center gap-2">
-                        Pobierz PDF <i data-lucide="download" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="group relative bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1">
-                    <div class="aspect-[4/3] rounded-2xl bg-rose-50 mb-6 overflow-hidden relative flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-rose-100/50 to-transparent"></div>
-                        <i data-lucide="alert-triangle" class="w-16 h-16 text-rose-600/20 group-hover:scale-110 transition-transform duration-500"></i>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-rose-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ważne • Mity</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-rose-600 transition-colors">Picie Kontrolowane: Obalanie Mitów</h3>
-                    <p class="text-slate-500 text-sm mb-4 line-clamp-3">
-                        Dlaczego powrót do picia towarzyskiego jest niemożliwy dla osoby uzależnionej? [cite_start]Analiza zjawiska dipsomanii i mechanizmów utraty kontroli[cite: 758, 777, 912, 982].
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#abstynencja</span>
-                        <span class="text-xs text-slate-400 bg-slate-50 px-2 py-1 rounded">#fakty</span>
-                    </div>
-                    <a href="./ebooks/mity-picie-kontrolowane.pdf" target="_blank" class="w-full py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm group-hover:bg-rose-600 group-hover:text-white group-hover:border-rose-600 transition-all flex items-center justify-center gap-2">
-                        Pobierz PDF <i data-lucide="download" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                 <div class="group relative bg-slate-900 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-center items-center text-center">
-                    <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-slate-700 transition">
-                        <i data-lucide="lock" class="w-8 h-8 text-amber-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Pełna Biblioteka</h3>
-                    <p class="text-slate-400 text-sm mb-6">
-                        To tylko wybrane materiały. Dołącz do EduWay Premium, aby uzyskać dostęp do ponad 50 workbooków i kursów wideo.
-                    </p>
-                    <a href="#premium" class="px-6 py-3 rounded-xl bg-amber-500 text-slate-900 font-bold text-sm hover:bg-amber-400 transition-colors w-full">
-                        Zobacz plany Premium
-                    </a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <section id="premium" class="py-24 bg-[#F3F6F8] relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+    <section id="biblioteka" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">Biblioteka Wiedzy</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Przeglądaj nasze zasoby. Wybierz kategorię, aby szybciej znaleźć to, czego szukasz.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="library-filters">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary transition shadow-sm" data-filter="all">Wszystko</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary transition shadow-sm" data-filter="ebook">Ebooki</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary transition shadow-sm" data-filter="workbook">Workbooki</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-slate-600 border border-slate-200 hover:border-secondary hover:text-secondary transition shadow-sm" data-filter="poradnik">Poradniki</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="library-grid">
+                
+                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col border border-slate-100" data-category="ebook">
+                    <div class="relative h-48 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full z-10">Ebook</span>
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Okładka ebooka" loading="lazy">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Zrozumieć Uzależnienie</h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow">Kompleksowy przewodnik dla rodzin i bliskich. Dowiedz się, jak działają mechanizmy choroby.</p>
+                        <div class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-400">#psychologia #wsparcie</span>
+                            <button class="text-secondary font-semibold text-sm hover:underline">Pobierz (PDF)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col border border-slate-100" data-category="workbook">
+                    <div class="relative h-48 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full z-10">Workbook</span>
+                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Notatnik i długopis" loading="lazy">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Dziennik Uczuć - 30 Dni</h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow">Praktyczne ćwiczenia pozwalające na identyfikację i nazywanie emocji każdego dnia.</p>
+                        <div class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-400">#ćwiczenia #emocje</span>
+                            <button class="text-secondary font-semibold text-sm hover:underline">Pobierz (PDF)</button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col border border-slate-100" data-category="poradnik">
+                    <div class="relative h-48 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-amber-400 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Premium</span>
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Spotkanie grupy" loading="lazy">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Asertywność w Zdrowieniu</h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow">Jak stawiać granice i dbać o swoje potrzeby bez poczucia winy.</p>
+                        <div class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
+                            <span class="text-xs text-slate-400">#asertywność #relacje</span>
+                            <button class="text-amber-600 font-semibold text-sm hover:underline flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                Dostęp Premium
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block text-primary font-semibold hover:text-secondary transition">Zobacz całą bibliotekę &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium" class="py-20 bg-gradient-to-b from-white to-slate-50 relative">
+        <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-slate-50 to-white"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-amber-600 font-bold tracking-widest uppercase text-xs mb-2 block">Inwestycja w siebie</span>
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-6">EduWay Premium</h2>
-                <p class="text-slate-500">Wybierz plan dopasowany do Twojego tempa zdrowienia.</p>
+                <span class="text-amber-500 font-bold tracking-widest uppercase text-sm">Strefa Edukacji</span>
+                <h2 class="text-4xl font-serif font-bold text-slate-900 mt-2 mb-4">Plany EduWay Premium</h2>
+                <p class="text-slate-600">Wybierz plan dopasowany do Twoich potrzeb i zyskaj pełen dostęp do wiedzy.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="glass-panel p-8 rounded-3xl flex flex-col">
-                    <h3 class="text-lg font-bold text-slate-700">Pojedynczy plik</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-slate-900">49</span> <span class="text-sm text-slate-500">zł</span></div>
-                    <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-grow">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Wybrany Ebook / Workbook</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dożywotni dostęp</li>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition relative">
+                    <h3 class="text-xl font-bold text-slate-800">Pakiet Podstawowy</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-slate-900">49-99</span>
+                        <span class="text-slate-500">zł / produkt</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6">Idealny, jeśli potrzebujesz konkretnego materiału.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-700">
+                        <li class="flex"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dojżywotni dostęp do produktu</li>
+                        <li class="flex"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pliki PDF wysokiej jakości</li>
                     </ul>
-                    <button class="w-full py-3 rounded-xl border border-slate-300 font-semibold hover:bg-slate-50 transition">Wybierz</button>
+                    <a href="#" class="block w-full py-3 px-4 bg-slate-100 text-slate-700 font-semibold rounded-lg text-center hover:bg-slate-200 transition">Wybierz materiał</a>
                 </div>
 
-                <div class="bg-primary text-white p-8 rounded-3xl flex flex-col relative transform md:-translate-y-4 shadow-2xl shadow-blue-900/20">
-                    <div class="absolute top-0 right-0 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Polecany</div>
-                    <h3 class="text-lg font-bold text-slate-300">Subskrypcja</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-white">129</span> <span class="text-sm text-slate-400">zł / mc</span></div>
-                    <ul class="space-y-3 mb-8 text-sm text-slate-300 flex-grow">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> Dostęp do WSZYSTKICH ebooków</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> Nowe materiały co tydzień</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> Webinary z terapeutami</li>
+                <div class="bg-white rounded-2xl p-8 border-2 border-secondary shadow-xl relative transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase">Polecany</div>
+                    <h3 class="text-xl font-bold text-slate-800">Abonament Miesięczny</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-slate-900">129</span>
+                        <span class="text-slate-500">zł / mc</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6">Pełen dostęp do biblioteki dla osób w procesie zmian.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-700">
+                        <li class="flex"><svg class="w-5 h-5 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dostęp do WSZYSTKICH materiałów</li>
+                        <li class="flex"><svg class="w-5 h-5 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Nowe materiały co tydzień</li>
+                        <li class="flex"><svg class="w-5 h-5 text-secondary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Anuluj w dowolnym momencie</li>
                     </ul>
-                    <button class="w-full py-3 rounded-xl bg-secondary text-white font-semibold hover:bg-teal-500 transition shadow-lg shadow-teal-900/50">Rozpocznij Premium</button>
+                    <a href="#" class="block w-full py-3 px-4 bg-secondary text-white font-semibold rounded-lg text-center hover:bg-teal-600 transition shadow-lg shadow-teal-500/30">Rozpocznij subskrypcję</a>
+                    <div class="mt-4 flex justify-center gap-2">
+                         <span class="text-slate-400 text-xs">Płatności obsługuje Stripe</span>
+                    </div>
                 </div>
 
-                <div class="glass-panel p-8 rounded-3xl flex flex-col">
-                    <h3 class="text-lg font-bold text-slate-700">Rok z góry</h3>
-                    <div class="my-4"><span class="text-4xl font-bold text-slate-900">339</span> <span class="text-sm text-slate-500">zł / rok</span></div>
-                    <ul class="space-y-3 mb-8 text-sm text-slate-600 flex-grow">
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 2 miesiące gratis</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Certyfikat ukończenia</li>
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold text-slate-800">Abonament Roczny</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-slate-900">339</span>
+                        <span class="text-slate-500">zł / rok</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6">Najlepsza wartość. Oszczędzasz ponad 70%.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-slate-700">
+                        <li class="flex"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Wszystkie korzyści planu miesięcznego</li>
+                        <li class="flex"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Certyfikaty ukończenia kursów</li>
+                        <li class="flex"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Priorytetowe wsparcie e-mail</li>
                     </ul>
-                    <button class="w-full py-3 rounded-xl border border-slate-300 font-semibold hover:bg-slate-50 transition">Wybierz</button>
+                    <a href="#" class="block w-full py-3 px-4 bg-primary text-white font-semibold rounded-lg text-center hover:bg-blue-900 transition">Wybierz plan roczny</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section id="kontakt" class="py-24 bg-white">
+    <section id="kontakt" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
                 <div>
                     <h2 class="text-3xl font-serif font-bold text-slate-900 mb-6">Skontaktuj się z nami</h2>
                     <p class="text-slate-600 mb-8">Masz pytania dotyczące platformy EduWay lub potrzebujesz pomocy w obsłudze konta? Jesteśmy tu dla Ciebie.</p>
+                    
                     <div class="space-y-6">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-primary">
-                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-semibold text-slate-900">Ośrodek MyWay</h4>
-                                <p class="text-slate-600">ul. Przykładowa 123<br>00-000 Miasto</p>
+                                <p class="text-slate-600">ul. Przykładowa 123<br>00-000 Miasto (Sprawdź na osrodek-myway.pl)</p>
                             </div>
                         </div>
+                        
                         <div class="flex items-start">
                             <div class="flex-shrink-0 w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-primary">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-lg font-semibold text-slate-900">Email</h4>
                                 <a href="mailto:kontakt@osrodek-myway.pl" class="text-secondary hover:underline">kontakt@osrodek-myway.pl</a>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h5 class="font-semibold text-slate-900 mb-4">Obserwuj nas:</h5>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-pink-600 hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.072 3.269.153 5.023 1.924 5.18 5.179.06 1.265.071 1.645.071 4.851 0 3.204-.012 3.584-.072 4.85-.152 3.269-1.923 5.023-5.179 5.18-1.265.06-1.645.071-4.851.071-3.204 0-3.584-.012-4.85-.072-3.269-.153-5.023-1.923-5.18-5.179-.06-1.265-.071-1.645-.071-4.851 0-3.204.012-3.584.072-4.85C2.17 4.158 3.941 2.304 7.202 2.147c1.264-.06 1.644-.071 4.85-.071zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.695.073 7.053.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.947.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg></a>
                         </div>
                     </div>
                 </div>
@@ -373,65 +362,101 @@
                             <label class="block text-sm font-medium text-slate-700 mb-1">Wiadomość</label>
                             <textarea rows="4" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-secondary focus:border-transparent transition outline-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-slate-800 transition shadow-md">Wyślij wiadomość</button>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="rodo" class="h-4 w-4 text-secondary border-slate-300 rounded focus:ring-secondary">
+                            <label for="rodo" class="ml-2 block text-xs text-slate-500">Akceptuję politykę prywatności.</label>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-blue-900 transition shadow-md">Wyślij wiadomość</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white border-t border-slate-200 py-12">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <div class="bg-primary text-white p-1 rounded">
-                    <i data-lucide="book-open" class="w-4 h-4"></i>
-                </div>
-                <span class="font-serif font-bold text-slate-800">EduWay.</span>
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+            <div>
+                <h3 class="text-white text-xl font-serif font-bold mb-4">EduWay <span class="text-slate-500 text-base font-sans">by MyWay</span></h3>
+                <p class="mb-4 text-slate-400">Nowoczesna platforma edukacyjna wspierająca proces leczenia i rozwoju osobistego.</p>
             </div>
-            <div class="text-sm text-slate-500">
-                &copy; 2024 MyWay Ośrodek Terapii. Wszelkie prawa zastrzeżone.
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Platforma</h4>
+                <ul class="space-y-2">
+                    <li><a href="#biblioteka" class="hover:text-white transition">Biblioteka</a></li>
+                    <li><a href="#premium" class="hover:text-white transition">Cennik</a></li>
+                    <li><a href="#" class="hover:text-white transition">Logowanie</a></li>
+                    <li><a href="#" class="hover:text-white transition">Rejestracja</a></li>
+                </ul>
             </div>
-            <div class="flex gap-4">
-                <a href="#" class="text-slate-400 hover:text-primary transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                <a href="#" class="text-slate-400 hover:text-primary transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                <a href="#" class="text-slate-400 hover:text-primary transition"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Prawne</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Regulamin</a></li>
+                    <li><a href="#" class="hover:text-white transition">Polityka Prywatności</a></li>
+                    <li><a href="#" class="hover:text-white transition">Zwroty i reklamacje</a></li>
+                </ul>
             </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Ośrodek MyWay</h4>
+                <p class="text-slate-400 mb-2">Dla osób szukających pomocy stacjonarnej:</p>
+                <a href="https://osrodek-myway.pl" target="_blank" class="text-secondary hover:text-white transition font-semibold">Odwiedź stronę ośrodka &rarr;</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2023-2024 EduWay by MyWay. Wszelkie prawa zastrzeżone. Projekt zgodny z wytycznymi MyWay.
         </div>
     </footer>
 
     <script>
-        // Inicjalizacja Ikon Lucide
-        lucide.createIcons();
-
-        // Logika Menu Mobilnego
-        const menuBtn = document.getElementById('menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMenu() {
-            mobileMenu.classList.toggle('translate-x-full');
-            document.body.classList.toggle('overflow-hidden');
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-
-        // Efekt zmniejszania menu przy przewijaniu
-        const nav = document.getElementById('main-nav');
+        // 1. Sticky Navbar & Shadow
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'bg-white/95');
-                nav.classList.remove('py-3');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md', 'bg-white/95');
             } else {
-                nav.classList.remove('py-2', 'bg-white/95');
-                nav.classList.add('py-3');
+                navbar.classList.remove('shadow-md', 'bg-white/90');
             }
         });
+
+        // 2. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 3. Library Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('#library-grid > div');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'border-transparent');
+                    b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                });
+                // Add active to clicked
+                btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                btn.classList.add('bg-primary', 'text-white', 'border-transparent');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'flex';
+                        // Simple animation
+                        item.classList.add('fade-in');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Set "All" as active initially
+        document.querySelector('[data-filter="all"]').click();
     </script>
 </body>
 </html>
